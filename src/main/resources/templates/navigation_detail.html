@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>导航页</title>
+</head>
+<body>
+IADT_CPI_INIT:2<BR>
+IADT_CPI_Media:墨迹天气<BR>
+IADT_CPI_URL:<A HREF="http://www.moji.com" target="iadtcpi">http://www.moji.com</A><BR>
+<BR>
+
+
+
+
+    <p th:each="entry: ${detail}">
+        IADT_CPI_ADTYP:<span th:text="${entry.key.iadtcpiadtyp}"></span> <BR>
+        IADT_CPI_ADVER:<span th:text="${entry.key.iadtcpiadver}"></span> <BR>
+
+        <!--<span th:text="${iadtcpiadurl}"></span>-->
+
+        <tr th:each="prod : ${entry.value}">
+            IADT_CPI_ADURL: <td th:text="${prod.iadtcpiadurl}"></td><BR>
+            IADT_CPI_ADCLK: <td th:text="${prod.iadtcpiadclk}"></td><BR>
+            IADT_CPI_ADVAL:<BR><BR>
+        <!--IADT_CPI_NURL:<a href="details.html" th:href="@{'http://localhost:8000/detail/'+${prod.naciKey}}">http://localhost:8000/detail/<span th:text="${prod.naciKey}"></a><BR><BR>-->
+        </tr>
+    <p/>
+
+
+
+
+
+        IADT_CPI_Update:<scan th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}"><scan/>
+
+
+</body>
+</html>

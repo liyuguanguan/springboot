@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+
+
+<!--<button class="layui-btn" id="layui-btn" onclick="AddInput()">新增</button>-->
+<!--<div id="body">-->
+<!--    <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">单行输入框</label>-->
+<!--        <div class="layui-input-block">-->
+<!--            <input type="text" name="title" lay-verify="title" autocomplete="off"  class="layui-input" >-->
+<!--            <input type="text" name="title" lay-verify="title" autocomplete="off"  class="layui-input" >-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">广告形式、广告位名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="iadtcpiadtyp" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">例如:通栏|顶部通栏</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">广告主、广告产品信息</label>
+        <div class="layui-input-inline">
+            <input type="text" name="iadtcpiadver" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">例如:联想|昭阳笔记本</div>
+    </div>
+
+    <div id="body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">投放广告的具体文件</label>
+            <div class="layui-input-block">
+                <input type="text" name="iadtcpiadurl" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">支持JPG\GIF\PNG\SWF\FLV几种格式</div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">投放广告的点击后链接</label>
+            <div class="layui-input-block">
+                <input type="text" name="iadtcpiadclk" required  lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-input-block">
+        <a href="javascript:void(0);" class="layui-btn" onclick="AddInput()">增加广告信息</a>
+    </div>
+
+
+
+    <!--<div class="layui-form-item">-->
+    <!--<label class="layui-form-label">密码框</label>-->
+    <!--<div class="layui-input-inline">-->
+    <!--<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">-->
+    <!--</div>-->
+    <!--<div class="layui-form-mid layui-word-aux">辅助文字</div>-->
+    <!--</div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择类型</label>
+        <div class="layui-input-block">
+            <select name="totalKey" lay-verify="required">
+                <option value=""></option>
+                <option value="IOS">IOS</option>
+                <option value="Android">Android</option>
+                <option value="Android_IOS">双端</option>
+                <option value="IPAD">IPAD</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">开始日期</label>
+        <div class="layui-input-inline">
+            <input type="text" name ="beginTime" class="layui-input" id="test5" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">结束日期</label>
+        <div class="layui-input-inline">
+            <input type="text" name ="endTime" class="layui-input" id="test6" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-input-block">
+        <!--<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>-->
+        <a href="javascript:void(0);" class="layui-btn" onclick="aa()">增加广告信息</a>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+</form>
+
+<!--<script>-->
+<!--//Demo-->
+<!--layui.use('form', function(){-->
+<!--var form = layui.form;-->
+
+<!--//监听提交-->
+<!--form.on('submit(formDemo)', function(data){-->
+<!--layer.msg(JSON.stringify(data.field));-->
+<!--return false;-->
+<!--});-->
+<!--});-->
+<!--</script>-->
+
+
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'laydate','form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+
+        // layer.msg('Hello World');
+
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#test5'
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#test6'
+            ,type: 'datetime'
+        });
+    });
+</script>
+
+<script>
+    var count = 1;
+    //用来判断是删除 还是增加按钮 以便count值进行计算
+    function checkCount(boolOK, coun) {
+        if (boolOK == true) {
+            return count++;
+        }
+        else {
+            count--;
+        }
+    }
+    function del(obj) {
+        var row = obj.parentNode;
+        row.parentNode.removeChild(row);
+    }
+    //添加一个input标签 同时也对它的ID和Name进行赋值。
+    function AddInput() {
+        countAA = checkCount(true, count);
+        var body = document.getElementById("body");
+        //创建div盒子用于包裹input+删除按钮
+        var div = document.createElement("div");
+        div.id = "bodys[" + count + "]";
+        div.setAttribute('class','layui-form-item')
+        body.appendChild(div);
+
+        var label = document.createElement("label");
+        label.setAttribute('class','layui-form-label');
+        div.appendChild(label);
+
+        var divin = document.createElement("div");
+        divin.setAttribute('class','layui-input-block');
+        div.appendChild(divin);
+
+        //创建input
+        var input = document.createElement("input");
+        input.type = "text";
+        input.setAttribute('class','layui-input');
+        input.name = "title1[" + count + "].name";
+        input.autocomplete="title1[" + count + "].name";
+        divin.appendChild(input);                                     //向元素增加子节点 最为最后一个子节点
+
+        //创建input
+        var input = document.createElement("input");
+        input.type = "text";
+        input.setAttribute('class','layui-input');
+        input.name = "title2[" + count + "].name";
+        input.autocomplete="title2[" + count + "].name";
+        divin.appendChild(input);
+
+        //创建删除按钮
+        var input = document.createElement("input");
+        input.type = "button";
+        input.value="删除";
+        input.name = "haha[" + count + "].name";
+        input.setAttribute('class','layui-btn layui-btn-add');
+        input.onclick = new Function("del(this)");
+        // contentCell.appendChild(delBtn);
+        div.appendChild(input);
+
+        //创建一个空格
+        var br = document.createElement("br");
+        div.appendChild(br);
+
+        // $(".layui-btn-add").click(function () {
+        //     $(this).parent('div').remove()
+        // })
+    }
+</script>
+<script>
+    function aa(){
+        var str=[];
+       $("#body").children("div").each(function(){
+            $(this).find("div").eq(0).find("input").each(function () {
+                 // str += $(this).val()+",";
+                str.push($(this).val());
+            });
+        });
+        // str = str.substr(0,str.length-1);// 除去最后一个“，”
+
+        var iadtcpiadtyp = $("input[name='iadtcpiadtyp']").val();
+        var iadtcpiadver = $("input[name='iadtcpiadver']").val();
+        var totalKey = $("select[name='iadtcpiadtyp']").val();
+        var beginTime = $("input[name='beginTime']").val();
+        var endTime = $("input[name='endTime']").val();
+        // var iadtcpiadtyp = $("input[name='iadtcpiadtyp']").val();
+        // var iadtcpiadtyp = $("input[name='iadtcpiadtyp']").val();
+        // var iadtcpiadtyp = $("input[name='iadtcpiadtyp']").val();
+
+        $.ajax({
+            url: "/detail/add",
+            type: "post",
+            data: {
+                "iadtcpiadtyp": $("input[name='iadtcpiadtyp']").val(),
+                "iadtcpiadver": $("input[name='iadtcpiadver']").val(),
+                "totalKey":$("select[name='totalKey']").val(),
+                "beginTime":$("input[name='beginTime']").val(),
+                "endTime":$("input[name='endTime']").val(),
+                "str":str
+
+            },
+            traditional: true,//这里设置为true
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 200) {
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);//关闭当前页
+                    // window.parent.location.replace(location.href)
+                    parent.location.reload();
+                    alert("添加成功");
+                } else {
+                    alert("添加失败");
+                }
+
+
+            },
+            error: function (data) {
+            alert("添加失败");
+            }
+        });
+    };
+
+</script>
+</body>
+</html>
