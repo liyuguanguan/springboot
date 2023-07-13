@@ -5,15 +5,17 @@
 <generatorConfiguration>
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
     <!--<classPathEntry  location="/Users/liyu.guan/.m2/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar"/>-->
-    <classPathEntry  location="/Users/liyu.guan/.m2/repository/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar"/>
+    <classPathEntry  location="/Users/guanliyu/.m2/repository/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar"/>
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <commentGenerator>
-            <property name="suppressDate" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否添加数据表中字段的注释 true：是 ： false:否 -->
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/boot?useSSL=false" userId="boot" password="123456"></jdbcConnection>
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://rm-2zewsn6j9262b1iox.mysql.rds.aliyuncs.com:3306/vehicle_network" userId="neolix_admin" password="Neolix@2021"></jdbcConnection>
         <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.186:3306/mojicom?useSSL=false" userId="super" password="6HuVdL*W"></jdbcConnection>-->
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -34,12 +36,12 @@
           type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
   -->
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.example.demo.mybaties.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.mybaties.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!--<table tableName="user" catalog="boot" domainObjectName="User"></table>-->
 
-        <table tableName="ad_adverting_data"  domainObjectName="AdAdvertingData"></table>
+        <table tableName="vehicle_check_data"  domainObjectName="VehicleCheckData"></table>
     </context>
 </generatorConfiguration>
